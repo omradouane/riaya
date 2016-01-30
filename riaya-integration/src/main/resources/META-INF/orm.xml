@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+	version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+	http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+	
+	<entity class="ma.riaya.model.dictionary.Person" />
+
+	<converter auto-apply="true" class="ma.riaya.integration.util.converter.LocalDateConverter" />
+	<converter auto-apply="true" class="ma.riaya.integration.util.converter.LocalDateTimeConverter" />
+	<persistence-unit-metadata>
+		<persistence-unit-defaults>
+			<entity-listeners>
+				<entity-listener class="ma.riaya.integration.util.listeners.AuditorListener">
+					<pre-persist method-name="onPrePersist" />
+					<pre-update method-name="onPreUpdate" />
+				</entity-listener>
+			</entity-listeners>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+</entity-mappings>
