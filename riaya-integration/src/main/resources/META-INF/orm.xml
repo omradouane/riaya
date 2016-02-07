@@ -8,6 +8,7 @@
 	
 	<entity class="ma.riaya.model.dictionary.Person" />
 	<entity class="ma.riaya.model.dictionary.Picture" />
+	<entity class="ma.riaya.model.dictionary.Area" />
 
 	<converter auto-apply="true" class="ma.riaya.integration.util.converter.LocalDateConverter" />
 	<converter auto-apply="true" class="ma.riaya.integration.util.converter.LocalDateTimeConverter" />
