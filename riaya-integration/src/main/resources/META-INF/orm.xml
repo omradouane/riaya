@@ -7,6 +7,7 @@
 	http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
 	
 	<entity class="ma.riaya.model.dictionary.Person" />
+	<entity class="ma.riaya.model.dictionary.Picture" />
 
 	<converter auto-apply="true" class="ma.riaya.integration.util.converter.LocalDateConverter" />
 	<converter auto-apply="true" class="ma.riaya.integration.util.converter.LocalDateTimeConverter" />

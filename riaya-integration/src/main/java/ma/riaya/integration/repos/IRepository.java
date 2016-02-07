@@ -5,6 +5,7 @@ package ma.riaya.integration.repos;
 
 import java.util.List;
 import java.util.Optional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,6 +14,7 @@ import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
 
 import ma.riaya.integration.exception.IntegrationException;
+import ma.riaya.integration.util.Constants;
 import ma.riaya.model.dictionary.BaseObject;
 
 /**
@@ -20,8 +22,11 @@ import ma.riaya.model.dictionary.BaseObject;
  *
  */
 public interface IRepository<T extends BaseObject> {
-
-	default TypedQuery<T> getAllQuery(final Order order) {
+	
+	final String PERSISTENCE_UNIT_NAME = System.getProperty(Constants.PU_KEY) == null ? Constants.PROD_PU
+			: System.getProperty(Constants.PU_KEY);
+	
+	public default TypedQuery<T> getAllQuery(final Order order) {
 		final CriteriaQuery<T> all = getAllCriteriaQuery();
 		if (order != null) {
 			all.orderBy(order);
@@ -30,7 +35,7 @@ public interface IRepository<T extends BaseObject> {
 		return allQuery;
 	}
 
-	default CriteriaQuery<T> getAllCriteriaQuery() {
+	public default CriteriaQuery<T> getAllCriteriaQuery() {
 		final CriteriaBuilder builder = getEm().getCriteriaBuilder();
 		final CriteriaQuery<T> cq = builder.createQuery(getDomainClass());
 		final Root<T> rootEntry = cq.from(getDomainClass());

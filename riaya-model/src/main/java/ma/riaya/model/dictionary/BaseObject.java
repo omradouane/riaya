@@ -27,11 +27,11 @@ public abstract class BaseObject implements Serializable {
 	private Boolean isActive = Boolean.TRUE;
 
 	/** The created. */
-	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	@Column(insertable = true, updatable = false)
 	private LocalDateTime created;
 
 	/** The updated. */
-	@Column(columnDefinition = "TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	@Column(insertable = false, updatable = true)
 	private LocalDateTime updated;
 
 	/** The created by. */

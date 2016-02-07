@@ -5,11 +5,15 @@ package ma.riaya.model.dictionary;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 
 /**
@@ -39,6 +43,10 @@ public class Person extends BaseObject {
 	private String cinNumber;
 
 	private String phoneNumber;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "PICTURE_ID")
+	private Picture picture;
 
 	/**
 	 * Get the id for this object
@@ -166,16 +174,36 @@ public class Person extends BaseObject {
 		this.phoneNumber = phoneNumber;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	
+	/**
+	 * Get the picture
+	 *
+	 * @author ouledmoussa
+	 * @return the picture
+	 */
+	public Picture getPicture() {
+		return picture;
+	}
+
+	/**
+	 * Set the picture
+	 *
+	 * @param picture
+	 *            the picture to set
+	 */
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", dateOfBirth=" + dateOfBirth + ", cinNumber="
-				+ cinNumber + ", phoneNumber=" + phoneNumber + "]";
+				+ cinNumber + ", phoneNumber=" + phoneNumber + ", picture="
+				+ picture + "]";
 	}
 
 }

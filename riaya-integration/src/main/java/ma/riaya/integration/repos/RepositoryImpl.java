@@ -6,8 +6,6 @@ package ma.riaya.integration.repos;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -34,8 +32,6 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 
 	private static final Logger log = Logger.getLogger(RepositoryImpl.class);
 
-	private static final String PERSISTENCE_UNIT_NAME = "riaya";
-
 	private Class<T> domainClass;
 
 	private EntityManager em;
@@ -54,7 +50,7 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 	}
 
 	/**
-	 * Get the em
+	 * Get the Entity Manager
 	 *
 	 * @author ouledmoussa
 	 * @return the em
@@ -147,15 +143,16 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 	@Override
 	public void delete(final T entity) throws IntegrationException {
 		log.info("delete start " + entity);
+		em.getTransaction().begin();
 		em.remove(em.contains(entity) ? entity : em.merge(entity));
+		em.getTransaction().commit();
 		log.info("delete end " + entity);
 	}
 
 	@Override
 	public void deleteAll() throws IntegrationException {
 		log.info("deleteAll start ");
-		final Stream<T> all = findAll().stream();
-		all.parallel().forEach(t -> {
+		findAll().stream().forEach(t -> {
 			try {
 				delete(t);
 			} catch (final Exception e) {
@@ -168,10 +165,12 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 	@Override
 	public void deleteAllFast() throws IntegrationException {
 		log.info("deleteAllFast start ");
+		em.getTransaction().begin();
 		final String delQuery = String.format(
 				QueryTool.DELETE_ALL_QUERY_STRING,
 				this.domainClass.getSimpleName(), "%s");
 		final int nbrOfDeleted = em.createQuery(delQuery).executeUpdate();
+		em.getTransaction().commit();
 		log.info("deleteAllFast end " + nbrOfDeleted);
 	}
 

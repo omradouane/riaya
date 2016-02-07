@@ -3,7 +3,7 @@
  */
 package ma.riaya.integration.repos;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 import ma.riaya.model.dictionary.Person;
 
@@ -13,6 +13,8 @@ import ma.riaya.model.dictionary.Person;
  */
 public interface IPersonRepository extends IRepository<Person> {
 	
-	Stream<Person> findByFirstName(final String firstName);
+	List<Person> findByFirstName(final String firstName);
+	
+	List<Person> findByLastName(final String lastName);
 
 }
