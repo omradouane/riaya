@@ -15,7 +15,9 @@ import javax.persistence.TableGenerator;
  *
  */
 @Entity
-@TableGenerator(name = "PictureKeyGen", table = "DIC_SEQUENCE", pkColumnName = "COLUMN_NAME", pkColumnValue = "PICTURE_ID", valueColumnName = "SEQ_VAL", initialValue = 0, allocationSize = 1)
+@TableGenerator(name = "PictureKeyGen", table = "DIC_SEQUENCE", pkColumnName = "COLUMN_NAME",
+				pkColumnValue = "PICTURE_ID", valueColumnName = "SEQ_VAL", initialValue = 0,
+				allocationSize = 1)
 public class Picture extends BaseObject {
 
 	private static final long serialVersionUID = 5471398731687149008L;
