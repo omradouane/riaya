@@ -5,6 +5,7 @@ package ma.riaya.integration.repos;
 
 import java.util.Optional;
 
+import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.model.dictionary.Area;
 
 /**
@@ -13,5 +14,5 @@ import ma.riaya.model.dictionary.Area;
  */
 public interface IAreaRepository extends IRepository<Area> {
 
-	Optional<Area> findByAreaName(final String areaName);
+	Optional<Area> findByAreaName(final String areaName) throws IntegrationException;
 }

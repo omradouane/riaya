@@ -39,6 +39,9 @@ public class PersonTest extends AbstractTest {
 
 	@Test
 	public void testPerson() throws IntegrationException {
+		log.debug("test repos");
+		assertNotNull(repos);
+		
 		log.debug("test save");
 		final Person person = new Person();
 		person.setFirstName("Radouane");

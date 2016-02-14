@@ -3,13 +3,13 @@
  */
 package ma.riaya.integration.repos;
 
-import ma.riaya.model.folder.social.SocialWorker;
+import ma.riaya.model.dictionary.Address;
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
  *
  */
-public interface ISocialWorkerRepository extends IRepository<SocialWorker> {
+public interface IAddressRepository extends IRepository<Address>{
 
 	
 }

@@ -176,8 +176,35 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public List<T> findBy(final String attributeName, final Object value) {
+	public List<T> findBy(final String attributeName, final Object value) throws IntegrationException {
 		log.info("findBy start " + attributeName + "=" + value);
+		final Class<?> clazz = validateParameters(attributeName, value);
+
+		final List<T> result;
+		try {
+			final CriteriaBuilder builder = em.getCriteriaBuilder();
+			final CriteriaQuery<T> cq = builder.createQuery(this.domainClass);
+			final Root<T> rootEntry = cq.from(this.domainClass);
+			final ParameterExpression p = builder.parameter(clazz);
+			final CriteriaQuery<T> all = cq.select(rootEntry).where(
+					builder.equal(rootEntry.get(attributeName), p));
+			final TypedQuery<T> allQuery = em.createQuery(all);
+			allQuery.setParameter(p, value);
+			result = allQuery.getResultList();
+		} catch (Exception e) {
+			throw new IntegrationException(e);
+		}
+		log.info("findBy end " + result.size());
+		return result;
+	}
+
+	/**
+	 * @param attributeName
+	 * @param value
+	 * @return
+	 */
+	private Class<?> validateParameters(final String attributeName,
+			final Object value) {
 		final Field field = ReflectionTool.findField(this.domainClass,
 				attributeName);
 
@@ -190,19 +217,6 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 				.isTrue(value.getClass().isAssignableFrom(clazz), String
 						.format("The object %s must be of type %s", value,
 								clazz));
-
-		final CriteriaBuilder builder = em.getCriteriaBuilder();
-		final CriteriaQuery<T> cq = builder.createQuery(this.domainClass);
-		final Root<T> rootEntry = cq.from(this.domainClass);
-
-		final ParameterExpression p = builder.parameter(clazz);
-		final CriteriaQuery<T> all = cq.select(rootEntry).where(
-				builder.equal(rootEntry.get(attributeName), p));
-		final TypedQuery<T> allQuery = em.createQuery(all);
-		allQuery.setParameter(p, value);
-
-		final List<T> result = allQuery.getResultList();
-		log.info("findBy end " + result.size());
-		return result;
+		return clazz;
 	}
 }

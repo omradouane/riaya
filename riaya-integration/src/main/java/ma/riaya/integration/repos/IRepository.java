@@ -119,5 +119,14 @@ public interface IRepository<T extends BaseObject> {
 	 */
 	void deleteAllFast() throws IntegrationException;
 
-	public List<T> findBy(final String attributeName, final Object value);
+	/**
+	 * Find a list of value where the given <code>attributeName</code> equals
+	 * the given <code>value</code>
+	 * 
+	 * @param attributeName
+	 * @param value
+	 * @return a List of values
+	 * @throws IntegrationException
+	 */
+	public List<T> findBy(final String attributeName, final Object value) throws IntegrationException;
 }

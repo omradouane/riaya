@@ -5,7 +5,6 @@ package ma.riaya.integration.dictionary;
 
 import static org.junit.Assert.*;
 
-import java.sql.SQLException;
 import java.util.Optional;
 
 import javax.persistence.RollbackException;

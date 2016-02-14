@@ -15,7 +15,9 @@ import javax.persistence.TableGenerator;
  *
  */
 @Entity
-@TableGenerator(name = "AreaKeyGen", table = "AD_SEQUENCE", pkColumnName = "COLUMN_NAME", pkColumnValue = "AREA_ID", valueColumnName = "SEQ_VAL", initialValue = 0, allocationSize = 1)
+@TableGenerator(name = "AreaKeyGen", table = "DIC_SEQUENCE", pkColumnName = "COLUMN_NAME",
+				pkColumnValue = "AREA_ID", valueColumnName = "SEQ_VAL", initialValue = 0,
+				allocationSize = 1)
 public class Area extends BaseObject {
 
 	private static final long serialVersionUID = 6737795587016913584L;

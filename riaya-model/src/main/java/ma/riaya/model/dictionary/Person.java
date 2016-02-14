@@ -47,6 +47,9 @@ public class Person extends BaseObject {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "PICTURE_ID")
 	private Picture picture;
+	
+	@Column(length= 1)
+	private Sex sex;
 
 	/**
 	 * Get the id for this object
@@ -195,6 +198,27 @@ public class Person extends BaseObject {
 		this.picture = picture;
 	}
 
+	
+	/**
+	 * Get the sex
+	 *
+	 * @author ouledmoussa
+	 * @return the sex
+	 */
+	public Sex getSex() {
+		return sex;
+	}
+
+	/**
+	 * Set the sex
+	 *
+	 * @param sex
+	 *            the sex to set
+	 */
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -203,7 +227,7 @@ public class Person extends BaseObject {
 		return "Person [id=" + id + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", dateOfBirth=" + dateOfBirth + ", cinNumber="
 				+ cinNumber + ", phoneNumber=" + phoneNumber + ", picture="
-				+ picture + "]";
+				+ picture + ", sex=" + sex + "]";
 	}
 
 }

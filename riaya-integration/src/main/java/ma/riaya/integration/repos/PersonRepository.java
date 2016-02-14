@@ -5,6 +5,7 @@ package ma.riaya.integration.repos;
 
 import java.util.List;
 
+import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.model.dictionary.Person;
 
 /**
@@ -21,13 +22,13 @@ public class PersonRepository extends RepositoryImpl<Person> implements IPersonR
 	}
 
 	@Override
-	public List<Person> findByFirstName(final String firstName) {
+	public List<Person> findByFirstName(final String firstName) throws IntegrationException {
 		return findBy("firstName", firstName);
 	}
 
 
 	@Override
-	public List<Person> findByLastName(final String lastName) {
+	public List<Person> findByLastName(final String lastName) throws IntegrationException {
 		return findBy("lastName", lastName);
 	}
 }
