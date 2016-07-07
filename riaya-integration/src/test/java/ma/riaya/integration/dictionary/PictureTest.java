@@ -71,7 +71,7 @@ public class PictureTest extends AbstractTest {
 		assertEquals(2L, s.count());
 		
 		log.debug("test findOne");
-		Optional<Picture> op = repos.findOne(1L);
+		Optional<Picture> op = repos.getOne(1L);
 		assertTrue(op.isPresent());
 		assertEquals(fileName, op.get().getFileName());
 		
@@ -82,7 +82,7 @@ public class PictureTest extends AbstractTest {
 		} catch (final Exception e) {
 		}
 		
-		op = repos.findOne(1L);
+		op = repos.getOne(1L);
 		assertEquals("riaya.gif", op.get().getFileName());
 		
 		log.debug("test count");

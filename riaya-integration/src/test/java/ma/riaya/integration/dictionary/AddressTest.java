@@ -45,7 +45,7 @@ public class AddressTest extends AbstractTest {
 		assertNotNull(savedAddress.getId());
 		
 		log.debug("test findAll");
-		Optional<Address> op = repos.findOne(savedAddress.getId());
+		Optional<Address> op = repos.getOne(savedAddress.getId());
 		assertTrue(op.isPresent());
 		assertEquals(desc, op.get().getDescription());
 	}

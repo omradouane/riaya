@@ -11,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
+import java.util.Optional;
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
@@ -111,6 +113,10 @@ public class FamilyTest extends AbstractTest {
 		savedFamily.setCareType(CareType.SAISONAL);
 		assertEquals(CareType.SAISONAL, repos.save(savedFamily).getCareType());
 		
+		List<Family> l = repos.findByFamilyName("Aqqad");
+		assertFalse(l.isEmpty());
 		
+		Optional<Family> op = repos.getFamilyByFamilyName("Aqqad");
+		assertTrue(op.isPresent());
 	}
 }

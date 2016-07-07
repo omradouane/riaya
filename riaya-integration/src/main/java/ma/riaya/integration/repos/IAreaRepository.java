@@ -14,5 +14,13 @@ import ma.riaya.model.dictionary.Area;
  */
 public interface IAreaRepository extends IRepository<Area> {
 
-	Optional<Area> findByAreaName(final String areaName) throws IntegrationException;
+	/**
+	 * Get a unique area by its areaName
+	 * 
+	 * @param areaName
+	 * @return
+	 * @throws IntegrationException
+	 */
+	Optional<Area> getByAreaName(final String areaName)
+			throws IntegrationException;
 }

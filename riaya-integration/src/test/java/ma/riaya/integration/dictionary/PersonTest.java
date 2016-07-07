@@ -64,7 +64,7 @@ public class PersonTest extends AbstractTest {
 		assertEquals(2L, s.count());
 		
 		log.debug("test findOne");
-		Optional<Person> op = repos.findOne(1L);
+		Optional<Person> op = repos.getOne(1L);
 		assertTrue(op.isPresent());
 		assertEquals("Radouane", op.get().getFirstName());
 		
@@ -75,7 +75,7 @@ public class PersonTest extends AbstractTest {
 		} catch (final Exception e) {
 		}
 		
-		op = repos.findOne(1L);
+		op = repos.getOne(1L);
 		assertEquals("0989870987", op.get().getPhoneNumber());
 		
 		log.debug("test count");
@@ -95,7 +95,7 @@ public class PersonTest extends AbstractTest {
 		assertEquals(1, l3.size());
 		
 		log.debug("test set picture");
-		final Optional<Person> oPers = repos.findOne(1L);
+		final Optional<Person> oPers = repos.getOne(1L);
 		final Picture pic = new Picture();
 		pic.setFileName("file.jpg");
 		pic.setFileSize(2345);

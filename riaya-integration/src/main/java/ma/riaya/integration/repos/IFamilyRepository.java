@@ -32,6 +32,14 @@ public interface IFamilyRepository extends IRepository<Family> {
 		return Optional.of(l.get(0));
 	}
 
+	/**
+	 * Find a list of Family where the family name is like the given
+	 * <code>familyName</code>.
+	 * 
+	 * @param familyName
+	 * @return
+	 * @throws IntegrationException
+	 */
 	List<Family> findByFamilyName(final String familyName) throws IntegrationException;
 	
 }

@@ -40,7 +40,7 @@ public class AreaTest extends AbstractTest {
 		assertNotNull(repos);
 		
 		log.debug("test findByAreaName => empty");
-		Optional<Area> op = repos.findByAreaName("titi");
+		Optional<Area> op = repos.getByAreaName("titi");
 		assertFalse(op.isPresent());
 		
 		log.debug("test save");
@@ -51,7 +51,7 @@ public class AreaTest extends AbstractTest {
 		assertNotNull(savedArea.getId());
 		
 		log.debug("test findByAreaName => titi");
-		op = repos.findByAreaName("titi");
+		op = repos.getByAreaName("titi");
 		assertTrue(op.isPresent());
 		
 	}

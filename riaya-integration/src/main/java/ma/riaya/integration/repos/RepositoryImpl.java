@@ -3,9 +3,13 @@
  */
 package ma.riaya.integration.repos;
 
+import static ma.riaya.integration.util.AssertTool.notNull;
+import static ma.riaya.integration.util.AssertTool.isTrue;
+
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,7 +22,6 @@ import javax.persistence.criteria.Root;
 
 import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.integration.repos.query.QueryTool;
-import ma.riaya.integration.util.AssertTool;
 import ma.riaya.integration.util.ReflectionTool;
 import ma.riaya.model.dictionary.BaseObject;
 
@@ -96,7 +99,7 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 	}
 
 	@Override
-	public Optional<T> findOne(final Long id) throws IntegrationException {
+	public Optional<T> getOne(final Long id) throws IntegrationException {
 		log.info("findOne start " + id);
 		final T t = em.find(domainClass, id);
 		log.info("findOne end " + t);
@@ -133,7 +136,7 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 	@Override
 	public void delete(final Long id) throws IntegrationException {
 		log.info("delete start " + id);
-		final Optional<T> op = findOne(id);
+		final Optional<T> op = getOne(id);
 		final T t = op.orElseThrow(() -> new IntegrationException(String
 				.format("No entity with id %s exists", id)));
 		delete(t);
@@ -198,6 +201,21 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 		return result;
 	}
 
+	@Override
+	public Optional<T> getBy(final String attributeName, final Object value) throws IntegrationException {
+		log.info("findBy start " + attributeName + "=" + value);
+		final List<T> l = findBy(attributeName, value);
+		if (l.isEmpty()) {
+			return Optional.empty();
+		}
+		if (l.size() != 1) {
+			throw new IntegrationException(String.format(
+					"Only one %s must exist with %s %s",
+					this.domainClass.getSimpleName(), attributeName, value));
+		}
+		log.info("findBy end true");
+		return Optional.of(l.get(0));
+	}
 	/**
 	 * @param attributeName
 	 * @param value
@@ -205,16 +223,17 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 	 */
 	private Class<?> validateParameters(final String attributeName,
 			final Object value) {
+		notNull(attributeName);
+		notNull(value);
 		final Field field = ReflectionTool.findField(this.domainClass,
 				attributeName);
 
-		AssertTool.notNull(field, String.format(
+		notNull(field, String.format(
 				"The attribute %s isn't part of %s", attributeName,
 				this.domainClass));
 		final Class<?> clazz = field.getType();
 
-		AssertTool
-				.isTrue(value.getClass().isAssignableFrom(clazz), String
+		isTrue(value.getClass().isAssignableFrom(clazz), String
 						.format("The object %s must be of type %s", value,
 								clazz));
 		return clazz;

@@ -3,10 +3,12 @@
  */
 package ma.riaya.integration.repos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -14,6 +16,7 @@ import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Root;
 
 import ma.riaya.integration.exception.IntegrationException;
+import ma.riaya.integration.repos.query.QueryTool;
 import ma.riaya.integration.util.Constants;
 import ma.riaya.model.dictionary.BaseObject;
 
@@ -22,10 +25,10 @@ import ma.riaya.model.dictionary.BaseObject;
  *
  */
 public interface IRepository<T extends BaseObject> {
-	
+
 	final String PERSISTENCE_UNIT_NAME = System.getProperty(Constants.PU_KEY) == null ? Constants.PROD_PU
 			: System.getProperty(Constants.PU_KEY);
-	
+
 	public default TypedQuery<T> getAllQuery(final Order order) {
 		final CriteriaQuery<T> all = getAllCriteriaQuery();
 		if (order != null) {
@@ -69,7 +72,7 @@ public interface IRepository<T extends BaseObject> {
 	 * @throws IllegalArgumentException
 	 *             if {@code id} is {@literal null}
 	 */
-	Optional<T> findOne(Long id) throws IntegrationException;
+	Optional<T> getOne(Long id) throws IntegrationException;
 
 	/**
 	 * Returns whether an entity with the given id exists.
@@ -128,5 +131,35 @@ public interface IRepository<T extends BaseObject> {
 	 * @return a List of values
 	 * @throws IntegrationException
 	 */
-	public List<T> findBy(final String attributeName, final Object value) throws IntegrationException;
+	public List<T> findBy(final String attributeName, final Object value)
+			throws IntegrationException;
+
+	/**
+	 * Get only one entry
+	 * 
+	 * @param attributeName
+	 * @param value
+	 * @return
+	 * @throws IntegrationException
+	 */
+	Optional<T> getBy(String attributeName, Object value)
+			throws IntegrationException;
+	
+	@SuppressWarnings("unchecked")
+	public default List<T> findByUsingLike(final String attributeName, final Object value)
+			throws IntegrationException {
+		List<T> result = new ArrayList<>();
+		try {
+			final Query q = getEm().createQuery(
+					String.format(QueryTool.SELECT_ALL_QUERY,
+							getDomainClass().getSimpleName())
+							.concat("where upper(x.").concat(attributeName)
+							.concat(") like upper(?1)"));
+			q.setParameter(1, "%" + value.toString() + "%");
+			result = q.getResultList();
+		} catch (Exception e) {
+			throw new IntegrationException(e);
+		}
+		return result;
+	}
 }

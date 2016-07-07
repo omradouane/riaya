@@ -49,22 +49,24 @@ public class SocialWorkerTest extends AbstractTest {
 	public void testSocialWorker() throws IntegrationException {
 		log.debug("test repos");
 		assertNotNull(repos);
+		final String personFirstName = "Radouane";
+		final String personLastName = "OULEDMOUSSA";
 		
 		log.debug("test save");
 		final SocialWorker sw = new SocialWorker();
 		final Person person = new Person();
-		person.setFirstName("Radouane");
+		person.setFirstName(personFirstName);
 		person.setCinNumber("AAAA");
-		person.setLastName("OULEDMOUSSA");
+		person.setLastName(personLastName);
 		person.setDateOfBirth(LocalDate.of(1960, Month.APRIL, 15));
 		sw.setPerson(person);
 		final SocialWorker savedSw = repos.save(sw);
 		assertNotNull(savedSw.getId());
 		
-		List<Person> list = reposPer.findByFirstName("Radouane");
+		List<Person> list = reposPer.findByFirstName(personFirstName);
 		assertFalse(list.isEmpty());
 		
-		Optional<SocialWorker> op = repos.findOne(1L);
+		final Optional<SocialWorker> op = repos.getOne(1L);
 		assertTrue(op.isPresent());
 		
 		final String fileName = "riaya.png";
@@ -81,7 +83,25 @@ public class SocialWorkerTest extends AbstractTest {
 		op.get().getPerson().setPicture(p);
 		final SocialWorker s = repos.save(op.get());
 		assertNotNull(s.getPerson().getPicture().getId());
-		
+
+		List<SocialWorker> l = repos.findByFirstName(personFirstName);
+		assertNotNull(l);
+		assertFalse(l.isEmpty());
+		assertEquals(1, l.size());
+		assertEquals(sw, l.get(0));
+		assertEquals(person, l.get(0).getPerson());
+
+		l = repos.findByLastName(personLastName);
+		assertNotNull(l);
+		assertFalse(l.isEmpty());
+		assertEquals(1, l.size());
+		assertEquals(sw, l.get(0));
+		assertEquals(person, l.get(0).getPerson());
+
+		l = repos.findByLastName("TOTO");
+		assertNotNull(l);
+		assertTrue(l.isEmpty());
+
 	}
 	
 }

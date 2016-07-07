@@ -26,19 +26,8 @@ public class FamilyRepository extends RepositoryImpl<Family> implements
 		super(domainClass);
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public List<Family> findByFamilyName(final String familyName) throws IntegrationException {
-		List<Family> result = new ArrayList<>();
-		try {
-			final Query q = getEm().createQuery(
-					String.format(QueryTool.SELECT_ALL_QUERY,
-							Family.class.getSimpleName()).concat(
-							"where upper(x.familyName) like upper('%:familyName%')"));
-			q.setParameter("familyName", familyName);
-			result = q.getResultList();
-		} catch (Exception e) {
-			throw new IntegrationException(e);
-		}
-		return result;
+		return findByUsingLike("familyName", familyName);
 	}
 }
