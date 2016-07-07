@@ -29,6 +29,7 @@ public class ScolarLevel extends BaseObject {
 	@Column(name = "SCOLAR_LEVEL_ID", nullable = false, insertable = true, updatable = true)
 	private Long id;
 	
+	@Column(unique = true)
 	private String name;
 
 	/**
@@ -47,7 +48,7 @@ public class ScolarLevel extends BaseObject {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -67,7 +68,7 @@ public class ScolarLevel extends BaseObject {
 	 * @param name
 	 *            the name to set
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 

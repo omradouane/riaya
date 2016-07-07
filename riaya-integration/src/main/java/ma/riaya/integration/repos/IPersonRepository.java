@@ -15,7 +15,7 @@ import ma.riaya.model.dictionary.Person;
 public interface IPersonRepository extends IRepository<Person> {
 	
 	List<Person> findByFirstName(final String firstName) throws IntegrationException ;
-	
+
 	List<Person> findByLastName(final String lastName) throws IntegrationException ;
 
 }

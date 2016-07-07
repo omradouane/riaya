@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.TableGenerator;
 
 import ma.riaya.model.dictionary.BaseObject;
@@ -25,6 +27,12 @@ import ma.riaya.model.dictionary.Person;
 @TableGenerator(name = "SocialWorkerKeyGen", table = "DIC_SEQUENCE", pkColumnName = "COLUMN_NAME", 
 				pkColumnValue = "SOCIAL_WORKER_ID", valueColumnName = "SEQ_VAL", initialValue = 0,
 				allocationSize = 1)
+@NamedQueries({
+		@NamedQuery(name = "socialWorker.findByFirstName", 
+					query = "select s from SocialWorker s join s.person p where p.firstName = :firstName"),
+		@NamedQuery(name = "socialWorker.findByLastName", 
+					query = "select s from SocialWorker s join s.person p where p.lastName = :lastName")
+})
 public class SocialWorker extends BaseObject {
 
 	private static final long serialVersionUID = -3629402996391867834L;
@@ -34,6 +42,7 @@ public class SocialWorker extends BaseObject {
 	@Column(name = "SOCIAL_WORKER_ID", nullable = false, insertable = true, updatable = true)
 	private Long id;
 
+	// TODO oneToOne
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "PERSON_ID")
 	private Person person;
@@ -54,7 +63,7 @@ public class SocialWorker extends BaseObject {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -74,7 +83,7 @@ public class SocialWorker extends BaseObject {
 	 * @param person
 	 *            the person to set
 	 */
-	public void setPerson(Person person) {
+	public void setPerson(final Person person) {
 		this.person = person;
 	}
 

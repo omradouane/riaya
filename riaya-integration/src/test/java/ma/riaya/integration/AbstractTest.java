@@ -8,13 +8,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import ma.riaya.integration.repos.query.QueryTool;
-import ma.riaya.integration.util.Constants;
-
 import org.apache.log4j.Logger;
 import org.eclipse.persistence.descriptors.ClassDescriptor;
 import org.eclipse.persistence.internal.jpa.metamodel.ManagedTypeImpl;
 import org.junit.Before;
+
+import ma.riaya.integration.repos.query.QueryTool;
+import ma.riaya.integration.util.Constants;
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
@@ -58,7 +58,7 @@ public abstract class AbstractTest {
 										.forEach(Query::executeUpdate);
 	}
 	
-	private void resetSequence(EntityManager em) {
+	private void resetSequence(final EntityManager em) {
 		em.createNativeQuery(QueryTool.RESET_ALL_SEQUENCE_STRING).executeUpdate();
 	}
 	

@@ -29,27 +29,27 @@ public class NamingStartegy implements SessionCustomizer {
 	 * .persistence.sessions.Session)
 	 */
 	@Override
-	public void customize(Session session) throws Exception {
-		for (ClassDescriptor descriptor : session.getDescriptors().values()) {
+	public void customize(final Session session) throws Exception {
+		for (final ClassDescriptor descriptor : session.getDescriptors().values()) {
             // Only change the table name for non-embedable entities with no
             // @Table already
             if (!descriptor.getTables().isEmpty() && descriptor.getAlias().equalsIgnoreCase(descriptor.getTableName())) {
-                String tableName = addUnderscores(Helper.getShortClassName(descriptor.getJavaClassName()));
+                final String tableName = addUnderscores(Helper.getShortClassName(descriptor.getJavaClassName()));
                 descriptor.setTableName(tableName);
-                for (IndexDefinition index : descriptor.getTables().get(0).getIndexes()) {
+                for (final IndexDefinition index : descriptor.getTables().get(0).getIndexes()) {
                     index.setTargetTable(tableName);
                 }
             }
-            for (DatabaseMapping mapping : descriptor.getMappings()) {
+            for (final DatabaseMapping mapping : descriptor.getMappings()) {
                 // Only change the column name for non-embedable entities with
                 // no @Column already
 
                 if (mapping instanceof AggregateObjectMapping) {
-                    for (Association association : ((AggregateObjectMapping) mapping).getAggregateToSourceFieldAssociations()) {
-                        DatabaseField field = (DatabaseField) association.getValue();
+                    for (final Association association : ((AggregateObjectMapping) mapping).getAggregateToSourceFieldAssociations()) {
+                        final DatabaseField field = (DatabaseField) association.getValue();
                         field.setName(addUnderscores(field.getName()));
                         
-                        for (DatabaseMapping attrMapping : session.getDescriptor(((AggregateObjectMapping) mapping).getReferenceClass()).getMappings()) {
+                        for (final DatabaseMapping attrMapping : session.getDescriptor(((AggregateObjectMapping) mapping).getReferenceClass()).getMappings()) {
                             if (attrMapping.getAttributeName().equalsIgnoreCase((String) association.getKey())) {
                                 ((AggregateObjectMapping) mapping).addFieldTranslation(field, addUnderscores(attrMapping.getAttributeName()));
                                 ((AggregateObjectMapping) mapping).getAggregateToSourceFields().remove(association.getKey());
@@ -58,18 +58,18 @@ public class NamingStartegy implements SessionCustomizer {
                         }
                     }
                 } else if (mapping instanceof ObjectReferenceMapping) {
-                    for (DatabaseField foreignKey : ((ObjectReferenceMapping) mapping).getForeignKeyFields()) {
+                    for (final DatabaseField foreignKey : ((ObjectReferenceMapping) mapping).getForeignKeyFields()) {
                         foreignKey.setName(addUnderscores(foreignKey.getName()));
                     }
                 } else if (mapping instanceof DirectMapMapping) {
-                    for (DatabaseField referenceKey : ((DirectMapMapping) mapping).getReferenceKeyFields()) {
+                    for (final DatabaseField referenceKey : ((DirectMapMapping) mapping).getReferenceKeyFields()) {
                         referenceKey.setName(addUnderscores(referenceKey.getName()));
                     }
-                    for (DatabaseField sourceKey : ((DirectMapMapping) mapping).getSourceKeyFields()) {
+                    for (final DatabaseField sourceKey : ((DirectMapMapping) mapping).getSourceKeyFields()) {
                         sourceKey.setName(addUnderscores(sourceKey.getName()));
                     }
                 } else {
-                    DatabaseField field = mapping.getField();
+                    final DatabaseField field = mapping.getField();
                     if (field != null && !mapping.getAttributeName().isEmpty() && field.getName().equalsIgnoreCase(mapping.getAttributeName())) {
                         field.setName(addUnderscores(mapping.getAttributeName()));
                     }
@@ -78,8 +78,8 @@ public class NamingStartegy implements SessionCustomizer {
         }
 	}
 	
-	private static String addUnderscores(String name) {
-        StringBuffer buf = new StringBuffer(name.replace('.', '_'));
+	private static String addUnderscores(final String name) {
+        final StringBuffer buf = new StringBuffer(name.replace('.', '_'));
         //buf.chars().filter(Character::isLowerCase);
 		for (int i = 1; i < buf.length() - 1; i++) {
 			if (Character.isLowerCase(buf.charAt(i - 1))

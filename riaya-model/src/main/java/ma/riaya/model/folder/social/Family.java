@@ -80,7 +80,7 @@ public class Family extends BaseObject {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -101,7 +101,7 @@ public class Family extends BaseObject {
 	 * @param familyName
 	 *            the familyName to set
 	 */
-	public void setFamilyName(String familyName) {
+	public void setFamilyName(final String familyName) {
 		this.familyName = familyName.toUpperCase();
 	}
 
@@ -121,7 +121,7 @@ public class Family extends BaseObject {
 	 * @param area
 	 *            the area to set
 	 */
-	public void setArea(Area area) {
+	public void setArea(final Area area) {
 		this.area = area;
 	}
 
@@ -141,7 +141,7 @@ public class Family extends BaseObject {
 	 * @param responsible
 	 *            the responsible to set
 	 */
-	public void setResponsible(Person responsible) {
+	public void setResponsible(final Person responsible) {
 		this.responsible = responsible;
 	}
 
@@ -161,7 +161,7 @@ public class Family extends BaseObject {
 	 * @param socialWorker
 	 *            the socialWorker to set
 	 */
-	public void setSocialWorker(SocialWorker socialWorker) {
+	public void setSocialWorker(final SocialWorker socialWorker) {
 		this.socialWorker = socialWorker;
 	}
 
@@ -181,7 +181,7 @@ public class Family extends BaseObject {
 	 * @param address
 	 *            the address to set
 	 */
-	public void setAddress(Address address) {
+	public void setAddress(final Address address) {
 		this.address = address;
 	}
 
@@ -201,7 +201,7 @@ public class Family extends BaseObject {
 	 * @param careType
 	 *            the careType to set
 	 */
-	public void setCareType(CareType careType) {
+	public void setCareType(final CareType careType) {
 		this.careType = careType;
 	}
 
@@ -221,7 +221,7 @@ public class Family extends BaseObject {
 	 * @param orphans
 	 *            the orphans to set
 	 */
-	public void setOrphans(Collection<Orphan> orphans) {
+	public void setOrphans(final Collection<Orphan> orphans) {
 		this.orphans = orphans;
 	}
 

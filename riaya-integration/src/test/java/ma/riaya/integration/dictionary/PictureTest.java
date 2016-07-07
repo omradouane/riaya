@@ -15,15 +15,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import org.apache.log4j.Logger;
+import org.junit.Before;
+import org.junit.Test;
+
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.integration.repos.IPictureRepository;
 import ma.riaya.integration.repos.PictureRepository;
 import ma.riaya.model.dictionary.Picture;
-
-import org.apache.log4j.Logger;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
@@ -71,18 +71,15 @@ public class PictureTest extends AbstractTest {
 		assertEquals(2L, s.count());
 		
 		log.debug("test findOne");
-		Optional<Picture> op = repos.findOne(1L);
+		Optional<Picture> op = repos.getOne(1L);
 		assertTrue(op.isPresent());
 		assertEquals(fileName, op.get().getFileName());
 		
 		log.debug("test update");
 		op.get().setFileName("riaya.gif");
-		try {
-			repos.save(op.get());
-		} catch (final Exception e) {
-		}
+		repos.save(op.get());
 		
-		op = repos.findOne(1L);
+		op = repos.getOne(1L);
 		assertEquals("riaya.gif", op.get().getFileName());
 		
 		log.debug("test count");
@@ -97,7 +94,6 @@ public class PictureTest extends AbstractTest {
 		repos.deleteAllFast();
 		final List<Picture> all = repos.findAll();
 		assertEquals(0, all.size());
-		
 		
 	}
 }

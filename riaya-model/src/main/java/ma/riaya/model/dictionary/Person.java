@@ -48,7 +48,7 @@ public class Person extends BaseObject {
 	@JoinColumn(name = "PICTURE_ID")
 	private Picture picture;
 	
-	@Column(length= 1)
+	@Column(length = 1)
 	private Sex sex;
 
 	/**
@@ -68,7 +68,7 @@ public class Person extends BaseObject {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -89,7 +89,7 @@ public class Person extends BaseObject {
 	 * @param firstName
 	 *            the firstName to set
 	 */
-	public void setFirstName(String firstName) {
+	public void setFirstName(final String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -110,7 +110,7 @@ public class Person extends BaseObject {
 	 * @param lastName
 	 *            the lastName to set
 	 */
-	public void setLastName(String lastName) {
+	public void setLastName(final String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -131,7 +131,7 @@ public class Person extends BaseObject {
 	 * @param dateOfBirth
 	 *            the dateOfBirth to set
 	 */
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(final LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -152,7 +152,7 @@ public class Person extends BaseObject {
 	 * @param cinNumber
 	 *            the cinNumber to set
 	 */
-	public void setCinNumber(String cinNumber) {
+	public void setCinNumber(final String cinNumber) {
 		this.cinNumber = cinNumber;
 	}
 
@@ -173,7 +173,7 @@ public class Person extends BaseObject {
 	 * @param phoneNumber
 	 *            the phoneNumber to set
 	 */
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(final String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -194,7 +194,7 @@ public class Person extends BaseObject {
 	 * @param picture
 	 *            the picture to set
 	 */
-	public void setPicture(Picture picture) {
+	public void setPicture(final Picture picture) {
 		this.picture = picture;
 	}
 
@@ -215,7 +215,7 @@ public class Person extends BaseObject {
 	 * @param sex
 	 *            the sex to set
 	 */
-	public void setSex(Sex sex) {
+	public void setSex(final Sex sex) {
 		this.sex = sex;
 	}
 

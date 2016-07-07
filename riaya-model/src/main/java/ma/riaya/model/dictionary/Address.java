@@ -20,9 +20,6 @@ import javax.persistence.TableGenerator;
 				allocationSize = 1)
 public class Address extends BaseObject {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 33021173340694837L;
 
 	@Id
@@ -48,7 +45,7 @@ public class Address extends BaseObject {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -68,7 +65,7 @@ public class Address extends BaseObject {
 	 * @param description
 	 *            the description to set
 	 */
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 

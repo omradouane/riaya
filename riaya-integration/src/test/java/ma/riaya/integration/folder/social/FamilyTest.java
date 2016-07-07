@@ -3,7 +3,10 @@
  */
 package ma.riaya.integration.folder.social;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -11,6 +14,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
+import java.util.Optional;
+
+import org.apache.log4j.Logger;
+import org.junit.Before;
+import org.junit.Test;
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
@@ -26,10 +35,6 @@ import ma.riaya.model.dictionary.Sex;
 import ma.riaya.model.folder.social.CareType;
 import ma.riaya.model.folder.social.Family;
 import ma.riaya.model.folder.social.SocialWorker;
-
-import org.apache.log4j.Logger;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
@@ -111,6 +116,10 @@ public class FamilyTest extends AbstractTest {
 		savedFamily.setCareType(CareType.SAISONAL);
 		assertEquals(CareType.SAISONAL, repos.save(savedFamily).getCareType());
 		
+		final List<Family> l = repos.findByFamilyName("Aqqad");
+		assertFalse(l.isEmpty());
 		
+		final Optional<Family> op = repos.getFamilyByFamilyName("Aqqad");
+		assertTrue(op.isPresent());
 	}
 }

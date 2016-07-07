@@ -3,19 +3,21 @@
  */
 package ma.riaya.integration.dictionary;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
+
+import org.apache.log4j.Logger;
+import org.junit.Before;
+import org.junit.Test;
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.integration.repos.AddressRepository;
 import ma.riaya.integration.repos.IAddressRepository;
 import ma.riaya.model.dictionary.Address;
-
-import org.apache.log4j.Logger;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
@@ -45,7 +47,7 @@ public class AddressTest extends AbstractTest {
 		assertNotNull(savedAddress.getId());
 		
 		log.debug("test findAll");
-		Optional<Address> op = repos.findOne(savedAddress.getId());
+		final Optional<Address> op = repos.getOne(savedAddress.getId());
 		assertTrue(op.isPresent());
 		assertEquals(desc, op.get().getDescription());
 	}

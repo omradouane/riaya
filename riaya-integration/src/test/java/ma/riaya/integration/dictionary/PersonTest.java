@@ -3,7 +3,9 @@
  */
 package ma.riaya.integration.dictionary;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -11,16 +13,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import org.apache.log4j.Logger;
+import org.junit.Before;
+import org.junit.Test;
+
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.integration.repos.IPersonRepository;
 import ma.riaya.integration.repos.PersonRepository;
 import ma.riaya.model.dictionary.Person;
 import ma.riaya.model.dictionary.Picture;
-
-import org.apache.log4j.Logger;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
@@ -64,18 +66,15 @@ public class PersonTest extends AbstractTest {
 		assertEquals(2L, s.count());
 		
 		log.debug("test findOne");
-		Optional<Person> op = repos.findOne(1L);
+		Optional<Person> op = repos.getOne(1L);
 		assertTrue(op.isPresent());
 		assertEquals("Radouane", op.get().getFirstName());
 		
 		log.debug("test update");
 		op.get().setPhoneNumber("0989870987");
-		try {
-			repos.save(op.get());
-		} catch (final Exception e) {
-		}
+		repos.save(op.get());
 		
-		op = repos.findOne(1L);
+		op = repos.getOne(1L);
 		assertEquals("0989870987", op.get().getPhoneNumber());
 		
 		log.debug("test count");
@@ -95,7 +94,7 @@ public class PersonTest extends AbstractTest {
 		assertEquals(1, l3.size());
 		
 		log.debug("test set picture");
-		final Optional<Person> oPers = repos.findOne(1L);
+		final Optional<Person> oPers = repos.getOne(1L);
 		final Picture pic = new Picture();
 		pic.setFileName("file.jpg");
 		pic.setFileSize(2345);

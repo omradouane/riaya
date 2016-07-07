@@ -3,21 +3,23 @@
  */
 package ma.riaya.integration.dictionary;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
 import javax.persistence.RollbackException;
+
+import org.apache.log4j.Logger;
+import org.junit.Before;
+import org.junit.Test;
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.integration.repos.AreaRepository;
 import ma.riaya.integration.repos.IAreaRepository;
 import ma.riaya.model.dictionary.Area;
-
-import org.apache.log4j.Logger;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
@@ -40,7 +42,7 @@ public class AreaTest extends AbstractTest {
 		assertNotNull(repos);
 		
 		log.debug("test findByAreaName => empty");
-		Optional<Area> op = repos.findByAreaName("titi");
+		Optional<Area> op = repos.getByAreaName("titi");
 		assertFalse(op.isPresent());
 		
 		log.debug("test save");
@@ -51,7 +53,7 @@ public class AreaTest extends AbstractTest {
 		assertNotNull(savedArea.getId());
 		
 		log.debug("test findByAreaName => titi");
-		op = repos.findByAreaName("titi");
+		op = repos.getByAreaName("titi");
 		assertTrue(op.isPresent());
 		
 	}

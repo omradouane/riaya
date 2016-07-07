@@ -9,8 +9,8 @@ package ma.riaya.integration.util;
  */
 public interface Constants {
 
-
 	public final String PU_KEY = "PU";
 	public final String PROD_PU = "riaya";
 	public final String TEST_PU = "riayaTest";
+
 }

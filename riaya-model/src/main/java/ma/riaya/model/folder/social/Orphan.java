@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 
@@ -39,7 +40,7 @@ public class Orphan extends BaseObject {
 	@Column(name = "ORPHAN_ID", nullable = false, insertable = true, updatable = true)
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "PERSON_ID")
 	private Person person;
 	
@@ -77,7 +78,7 @@ public class Orphan extends BaseObject {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -97,11 +98,10 @@ public class Orphan extends BaseObject {
 	 * @param person
 	 *            the person to set
 	 */
-	public void setPerson(Person person) {
+	public void setPerson(final Person person) {
 		this.person = person;
 		if (person != null && person.getDateOfBirth() != null) {
-			final LocalDate toDay = LocalDate.now();
-			final Period p = Period.between(person.getDateOfBirth(), toDay);
+			final Period p = Period.between(person.getDateOfBirth(), LocalDate.now());
 			this.age = Integer.valueOf(p.getYears());
 		}
 	}
@@ -132,7 +132,7 @@ public class Orphan extends BaseObject {
 	 * @param number
 	 *            the number to set
 	 */
-	public void setNumber(Integer number) {
+	public void setNumber(final Integer number) {
 		this.number = number;
 	}
 
@@ -153,7 +153,7 @@ public class Orphan extends BaseObject {
 	 * @param scolarLevel
 	 *            the scolarLevel to set
 	 */
-	public void setScolarLevel(ScolarLevel scolarLevel) {
+	public void setScolarLevel(final ScolarLevel scolarLevel) {
 		this.scolarLevel = scolarLevel;
 	}
 
@@ -173,7 +173,7 @@ public class Orphan extends BaseObject {
 	 * @param address
 	 *            the address to set
 	 */
-	public void setAddress(Address address) {
+	public void setAddress(final Address address) {
 		this.address = address;
 	}
 
@@ -193,7 +193,7 @@ public class Orphan extends BaseObject {
 	 * @param family
 	 *            the family to set
 	 */
-	public void setFamily(Family family) {
+	public void setFamily(final Family family) {
 		this.family = family;
 	}
 

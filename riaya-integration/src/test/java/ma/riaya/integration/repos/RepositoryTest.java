@@ -4,12 +4,13 @@
 package ma.riaya.integration.repos;
 
 import static org.junit.Assert.assertNotNull;
-import ma.riaya.integration.AbstractTest;
-import ma.riaya.integration.exception.IntegrationException;
-import ma.riaya.model.dictionary.BaseObject;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import ma.riaya.integration.AbstractTest;
+import ma.riaya.integration.exception.IntegrationException;
+import ma.riaya.model.dictionary.BaseObject;
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>

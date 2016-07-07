@@ -4,6 +4,8 @@
 package ma.riaya.integration.util;
 
 import java.lang.reflect.Field;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
@@ -17,10 +19,9 @@ public abstract class ReflectionTool {
 		Class<?> searchType = clazz;
 		while (!Object.class.equals(searchType) && searchType != null) {
 			final Field[] fields = searchType.getDeclaredFields();
-			for (final Field field : fields) {
-				if ((name == null || name.equals(field.getName()))) {
-					return field;
-				}
+			final Optional<Field> field = Stream.of(fields).filter(f -> name.equals(f.getName())).findFirst();
+			if (field.isPresent()) {
+				return field.get();
 			}
 			searchType = searchType.getSuperclass();
 		}

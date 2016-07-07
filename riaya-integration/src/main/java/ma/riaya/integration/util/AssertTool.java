@@ -13,7 +13,7 @@ public abstract class AssertTool {
 	 * Assert that an object is not {@code null} .
 	 * 
 	 * <pre class="code">
-	 * Assert.notNull(object, &quot;The object must not be null&quot;);
+	 * AssertTool.notNull(object, &quot;The object must not be null&quot;);
 	 * </pre>
 	 * 
 	 * @param object
@@ -33,7 +33,7 @@ public abstract class AssertTool {
 	 * Assert that an object is not {@code null} .
 	 * 
 	 * <pre class="code">
-	 * Assert.notNull(obj);
+	 * AssertTool.notNull(obj);
 	 * </pre>
 	 * 
 	 * @param object
@@ -50,7 +50,7 @@ public abstract class AssertTool {
 	 * Assert that the given string object is not {@code null} .
 	 * 
 	 * <pre class="code">
-	 * Assert.notNull(str, &quot;The class must not be null&quot;);
+	 * AssertTool.notNull(str, &quot;The class must not be null&quot;);
 	 * </pre>
 	 * 
 	 * @param str
@@ -71,7 +71,7 @@ public abstract class AssertTool {
 	 * the test result is {@code false}.
 	 * 
 	 * <pre class="code">
-	 * Assert.isTrue(i &gt; 0, &quot;The value must be greater than zero&quot;);
+	 * AssertTool.isTrue(i &gt; 0, &quot;The value must be greater than zero&quot;);
 	 * </pre>
 	 * 
 	 * @param expression
@@ -89,18 +89,16 @@ public abstract class AssertTool {
 
 	/**
 	 * Asserts that two longs are equal. If they are not, an
-	 * {@link AssertionError} is thrown.
+	 * {@link IllegalArgumentException} is thrown.
 	 *
 	 * @param expected
 	 *            expected long value.
 	 * @param actual
 	 *            actual long value
 	 */
-	static public void assertEquals(final long expected, final long actual,
-			final String message) {
+	static public void assertEquals(final long expected, final long actual, final String message) {
 		if (expected != actual) {
-			throw new IllegalArgumentException(message != null ? message
-					: "The given values are not equal");
+			throw new IllegalArgumentException(message != null ? message : "The given values are not equal");
 		}
 	}
 }

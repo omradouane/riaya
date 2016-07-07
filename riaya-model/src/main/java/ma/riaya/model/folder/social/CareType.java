@@ -9,14 +9,14 @@ package ma.riaya.model.folder.social;
  */
 public enum CareType {
 
-	PERMANENT("Permanente"), SAISONAL("Saisonniere");
+	PERMANENT("Permanente"), SAISONAL("Saisonnière");
 
 	private String value;
 
 	/**
 	 * @param value
 	 */
-	private CareType(String value) {
+	private CareType(final String value) {
 		this.value = value;
 	}
 
