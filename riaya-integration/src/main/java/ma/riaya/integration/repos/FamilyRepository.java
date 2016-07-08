@@ -23,7 +23,10 @@ public class FamilyRepository extends RepositoryImpl<Family> implements
 	}
 
 	
+<<<<<<< HEAD
 	@Override
+=======
+>>>>>>> refs/remotes/origin/master
 	public List<Family> findByFamilyName(final String familyName) throws IntegrationException {
 		return findByUsingLike("familyName", familyName);
 	}

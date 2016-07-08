@@ -16,10 +16,13 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 import java.util.Optional;
+<<<<<<< HEAD
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+=======
+>>>>>>> refs/remotes/origin/master
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
@@ -116,10 +119,18 @@ public class FamilyTest extends AbstractTest {
 		savedFamily.setCareType(CareType.SAISONAL);
 		assertEquals(CareType.SAISONAL, repos.save(savedFamily).getCareType());
 		
+<<<<<<< HEAD
 		final List<Family> l = repos.findByFamilyName("Aqqad");
+=======
+		List<Family> l = repos.findByFamilyName("Aqqad");
+>>>>>>> refs/remotes/origin/master
 		assertFalse(l.isEmpty());
 		
+<<<<<<< HEAD
 		final Optional<Family> op = repos.getFamilyByFamilyName("Aqqad");
+=======
+		Optional<Family> op = repos.getFamilyByFamilyName("Aqqad");
+>>>>>>> refs/remotes/origin/master
 		assertTrue(op.isPresent());
 	}
 }

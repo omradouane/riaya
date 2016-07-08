@@ -20,7 +20,11 @@ public class AreaRepository extends RepositoryImpl<Area> implements IAreaReposit
 	}
 	
 	@Override
+<<<<<<< HEAD
 	public Optional<Area> getByAreaName(final String areaName) throws IntegrationException {
+=======
+	public Optional<Area> getByAreaName(String areaName) throws IntegrationException {
+>>>>>>> refs/remotes/origin/master
 		/*final List<Area> list = findBy("areaName", areaName);
 		if (list.isEmpty()) {
 			return Optional.empty();

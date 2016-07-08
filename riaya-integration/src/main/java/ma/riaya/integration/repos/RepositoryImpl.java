@@ -3,8 +3,13 @@
  */
 package ma.riaya.integration.repos;
 
+<<<<<<< HEAD
 import static ma.riaya.integration.util.AssertTool.isTrue;
 import static ma.riaya.integration.util.AssertTool.notNull;
+=======
+import static ma.riaya.integration.util.AssertTool.notNull;
+import static ma.riaya.integration.util.AssertTool.isTrue;
+>>>>>>> refs/remotes/origin/master
 
 import java.lang.reflect.Field;
 import java.util.List;
