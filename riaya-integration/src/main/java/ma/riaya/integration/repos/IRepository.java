@@ -157,11 +157,7 @@ public interface IRepository<T extends BaseObject> {
 							.concat(") like upper(?1)"));
 			q.setParameter(1, "%" + value.toString() + "%");
 			result = q.getResultList();
-<<<<<<< HEAD
 		} catch (final Exception e) {
-=======
-		} catch (Exception e) {
->>>>>>> refs/remotes/origin/master
 			throw new IntegrationException(e);
 		}
 		return result;

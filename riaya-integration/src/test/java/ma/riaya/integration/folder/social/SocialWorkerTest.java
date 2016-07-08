@@ -66,11 +66,7 @@ public class SocialWorkerTest extends AbstractTest {
 		final SocialWorker savedSw = repos.save(sw);
 		assertNotNull(savedSw.getId());
 		
-<<<<<<< HEAD
 		final List<Person> list = reposPer.findByFirstName(personFirstName);
-=======
-		List<Person> list = reposPer.findByFirstName(personFirstName);
->>>>>>> refs/remotes/origin/master
 		assertFalse(list.isEmpty());
 		
 		final Optional<SocialWorker> op = repos.getOne(1L);

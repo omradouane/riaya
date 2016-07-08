@@ -3,7 +3,6 @@
  */
 package ma.riaya.integration.folder.social;
 
-<<<<<<< HEAD
 import static ma.riaya.integration.util.AssertTool.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -13,12 +12,6 @@ import java.time.Month;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
-=======
-import static org.junit.Assert.assertNotNull;
-
-import java.time.LocalDate;
-import java.time.Month;
->>>>>>> refs/remotes/origin/master
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
@@ -28,13 +21,6 @@ import ma.riaya.integration.repos.OrphanRepository;
 import ma.riaya.integration.repos.PersonRepository;
 import ma.riaya.model.dictionary.Person;
 import ma.riaya.model.folder.social.Orphan;
-<<<<<<< HEAD
-=======
-
-import org.apache.log4j.Logger;
-import org.junit.Before;
-import org.junit.Test;
->>>>>>> refs/remotes/origin/master
 
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
@@ -57,7 +43,6 @@ public class OrphanTest extends AbstractTest {
 	public void testOrphan() throws IntegrationException {
 		log.debug("test repos");
 		assertNotNull(repos);
-<<<<<<< HEAD
 		repos.deleteAll();
 		final String personFirstName = "Radouane";
 		final String personLastName = "OULEDMOUSSA";
@@ -86,19 +71,5 @@ public class OrphanTest extends AbstractTest {
 		assertNotNull(o2.getId());
 		assertEquals(person2.getId(), o2.getPerson().getId(), "Person has changed");
 		
-=======
-		final String personFirstName = "Radouane";
-		final String personLastName = "OULEDMOUSSA";
-		
-		log.debug("test save");
-		final Orphan o = new Orphan();
-		
-		final Person person = new Person();
-		person.setFirstName(personFirstName);
-		person.setCinNumber("AAAA");
-		person.setLastName(personLastName);
-		person.setDateOfBirth(LocalDate.of(1960, Month.APRIL, 15));
-		o.setPerson(person);;
->>>>>>> refs/remotes/origin/master
 	}
 }
