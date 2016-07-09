@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,9 @@ import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.integration.repos.FamilyRepository;
 import ma.riaya.integration.repos.IFamilyRepository;
+import ma.riaya.integration.repos.IOrphanRepository;
 import ma.riaya.integration.repos.ISocialWorkerRepository;
+import ma.riaya.integration.repos.OrphanRepository;
 import ma.riaya.integration.repos.SocialWorkerRepository;
 import ma.riaya.model.dictionary.Address;
 import ma.riaya.model.dictionary.Area;
@@ -34,6 +37,7 @@ import ma.riaya.model.dictionary.Picture;
 import ma.riaya.model.dictionary.Sex;
 import ma.riaya.model.folder.social.CareType;
 import ma.riaya.model.folder.social.Family;
+import ma.riaya.model.folder.social.Orphan;
 import ma.riaya.model.folder.social.SocialWorker;
 
 /**
@@ -46,11 +50,13 @@ public class FamilyTest extends AbstractTest {
 
 	private IFamilyRepository repos;
 	private ISocialWorkerRepository swRepos;
+	private IOrphanRepository oRepos;
 
 	@Before
 	public void setUp() {
 		repos = new FamilyRepository(Family.class);
 		swRepos = new SocialWorkerRepository(SocialWorker.class);
+		oRepos = new OrphanRepository(Orphan.class);
 	}
 	
 	@Test
@@ -116,10 +122,26 @@ public class FamilyTest extends AbstractTest {
 		savedFamily.setCareType(CareType.SAISONAL);
 		assertEquals(CareType.SAISONAL, repos.save(savedFamily).getCareType());
 		
-		final List<Family> l = repos.findByFamilyName("Aqqad");
+		final List<Family> l = repos.findByFamilyName("AQQAD");
 		assertFalse(l.isEmpty());
 		
-		final Optional<Family> op = repos.getFamilyByFamilyName("Aqqad");
+		final Optional<Family> op = repos.getFamilyByFamilyName("AQQAD");
 		assertTrue(op.isPresent());
+
+		Orphan o = new Orphan();
+		final Person orphanPerson = new Person();
+		orphanPerson.setFirstName("Said");
+		orphanPerson.setCinNumber("AAAA0090");
+		orphanPerson.setLastName("Kawtari");
+		orphanPerson.setDateOfBirth(LocalDate.of(1960, Month.APRIL, 15));
+		o.setPerson(orphanPerson);
+		o.setFamily(f);
+		o = oRepos.save(o);
+		
+		final Optional<Family> fam = repos.getOne(1L);
+		assertTrue(fam.isPresent());
+		final Collection<Orphan> orphans = fam.get().getOrphans();
+		assertTrue(!orphans.isEmpty());
+		
 	}
 }

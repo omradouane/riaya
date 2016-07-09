@@ -16,9 +16,7 @@ import org.junit.Test;
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.integration.repos.IOrphanRepository;
-import ma.riaya.integration.repos.IPersonRepository;
 import ma.riaya.integration.repos.OrphanRepository;
-import ma.riaya.integration.repos.PersonRepository;
 import ma.riaya.model.dictionary.Person;
 import ma.riaya.model.folder.social.Orphan;
 
@@ -31,12 +29,10 @@ public class OrphanTest extends AbstractTest {
 	private static final Logger log = Logger.getLogger(OrphanTest.class);
 
 	private IOrphanRepository repos;
-	private IPersonRepository reposPer;
 
 	@Before
 	public void setUp() {
 		repos = new OrphanRepository(Orphan.class);
-		reposPer = new PersonRepository(Person.class);
 	}
 
 	@Test

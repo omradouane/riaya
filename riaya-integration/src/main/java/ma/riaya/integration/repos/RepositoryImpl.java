@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.LockModeType;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -101,7 +102,9 @@ public class RepositoryImpl<T extends BaseObject> implements IRepository<T> {
 	@Override
 	public Optional<T> getOne(final Long id) throws IntegrationException {
 		log.info("findOne start " + id);
-		final T t = em.find(domainClass, id);
+		em.getTransaction().begin();
+		final T t = em.find(domainClass, id, LockModeType.PESSIMISTIC_READ);
+		em.getTransaction().commit();
 		log.info("findOne end " + t);
 		return Optional.of(t);
 	}
