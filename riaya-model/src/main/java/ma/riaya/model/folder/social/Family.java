@@ -4,7 +4,7 @@
 package ma.riaya.model.folder.social;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -62,7 +62,7 @@ public class Family extends BaseObject {
 	private CareType careType;
 	
 	@OneToMany(mappedBy="family")
-	private Collection<Orphan> orphans = new ArrayList<>();
+	private List<Orphan> orphans = new ArrayList<>();
 
 	/**
 	 * Get the id
@@ -211,7 +211,7 @@ public class Family extends BaseObject {
 	 * @author ouledmoussa
 	 * @return the orphans
 	 */
-	public Collection<Orphan> getOrphans() {
+	public List<Orphan> getOrphans() {
 		return orphans;
 	}
 
@@ -221,7 +221,7 @@ public class Family extends BaseObject {
 	 * @param orphans
 	 *            the orphans to set
 	 */
-	public void setOrphans(final Collection<Orphan> orphans) {
+	public void setOrphans(final List<Orphan> orphans) {
 		this.orphans = orphans;
 	}
 
@@ -230,10 +230,9 @@ public class Family extends BaseObject {
 	 */
 	@Override
 	public String toString() {
-		return "Family [id=" + id + ", familyName=" + familyName + ", area="
-				+ area + ", responsible=" + responsible + ", socialWorker="
-				+ socialWorker + ", address=" + address + ", careType="
-				+ careType + "]";
+		return "Family [id=" + id + ", familyName=" + familyName + ", area=" + area + ", responsible=" + responsible
+				+ ", socialWorker=" + socialWorker + ", address=" + address + ", careType=" + careType + ", orphans="
+				+ orphans + "]";
 	}
 
 }
