@@ -17,10 +17,6 @@
 		</layout>
 	</appender>
 	
-	<logger name="org.hibernate">
-		<level value="INFO" />
-	</logger>
-	
 	<logger name="ma.riaya">
 		<level value="DEBUG" />
 	</logger>
