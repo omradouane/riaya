@@ -21,7 +21,7 @@ import ma.riaya.model.dictionary.Role;
 import ma.riaya.model.dictionary.RoleEnum;
 
 /**
- * @author ouledmoussa
+ * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
  *
  */
 public class RoleTest extends AbstractTest {
