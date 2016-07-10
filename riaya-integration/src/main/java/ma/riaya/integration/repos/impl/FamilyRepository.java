@@ -1,11 +1,12 @@
 /**
  * 
  */
-package ma.riaya.integration.repos;
+package ma.riaya.integration.repos.impl;
 
 import java.util.List;
 
 import ma.riaya.integration.exception.IntegrationException;
+import ma.riaya.integration.repos.IFamilyRepository;
 import ma.riaya.model.folder.social.Family;
 
 /**

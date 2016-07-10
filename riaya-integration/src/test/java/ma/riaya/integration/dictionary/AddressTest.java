@@ -15,8 +15,8 @@ import org.junit.Test;
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
-import ma.riaya.integration.repos.AddressRepository;
 import ma.riaya.integration.repos.IAddressRepository;
+import ma.riaya.integration.repos.impl.AddressRepository;
 import ma.riaya.model.dictionary.Address;
 
 /**

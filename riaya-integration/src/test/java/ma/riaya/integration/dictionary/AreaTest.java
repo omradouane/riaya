@@ -17,8 +17,8 @@ import org.junit.Test;
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
-import ma.riaya.integration.repos.AreaRepository;
 import ma.riaya.integration.repos.IAreaRepository;
+import ma.riaya.integration.repos.impl.AreaRepository;
 import ma.riaya.model.dictionary.Area;
 
 /**

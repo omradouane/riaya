@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ma.riaya.integration.repos;
+package ma.riaya.integration.repos.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 import ma.riaya.integration.exception.IntegrationException;
+import ma.riaya.integration.repos.IOrphanRepository;
 import ma.riaya.model.folder.social.Orphan;
 
 /**

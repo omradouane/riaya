@@ -16,7 +16,7 @@ import org.junit.Test;
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.integration.repos.IOrphanRepository;
-import ma.riaya.integration.repos.OrphanRepository;
+import ma.riaya.integration.repos.impl.OrphanRepository;
 import ma.riaya.model.dictionary.Person;
 import ma.riaya.model.folder.social.Orphan;
 

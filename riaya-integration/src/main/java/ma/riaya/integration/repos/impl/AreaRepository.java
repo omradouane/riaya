@@ -1,11 +1,12 @@
 /**
  * 
  */
-package ma.riaya.integration.repos;
+package ma.riaya.integration.repos.impl;
 
 import java.util.Optional;
 
 import ma.riaya.integration.exception.IntegrationException;
+import ma.riaya.integration.repos.IAreaRepository;
 import ma.riaya.model.dictionary.Area;
 
 /**

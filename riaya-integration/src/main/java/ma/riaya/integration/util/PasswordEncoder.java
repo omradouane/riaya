@@ -6,11 +6,15 @@ package ma.riaya.integration.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author <a href="mailto:om.radouane@gmail.com">Radouane OULEDMOUSSA</a>
  *
  */
 public class PasswordEncoder {
+	
+	private static final Logger log = Logger.getLogger(PasswordEncoder.class);
 
 	/**
 	 * Encodes a password using SHA-256 Algorithm.
@@ -19,6 +23,7 @@ public class PasswordEncoder {
 	 *            The password to be encoded.
 	 */
 	public String encode(final String rawPass) {
+		log.trace("encode password");
 		try {
 			return byteArrayToHexString(hashPwd(rawPass));
 		} catch (final NoSuchAlgorithmException e) {
@@ -51,6 +56,7 @@ public class PasswordEncoder {
 	 *            The password to be checked.
 	 */
 	public boolean isPasswordValid(final String encPass, final String rawPass) {
+		log.debug("isPasswordValid " + rawPass);
 		try {
 			final String pwd = byteArrayToHexString(hashPwd(rawPass));
 			return encPass.equals(pwd);
@@ -60,10 +66,4 @@ public class PasswordEncoder {
 		}
 	}
 
-	public static void main(final String[] args) {
-		final PasswordEncoder pe = new PasswordEncoder();
-		final String enc = pe.encode("0123456789");
-		System.out.println(enc);
-		System.out.println(pe.isPasswordValid(enc, "Ilem@2015"));
-	}
 }

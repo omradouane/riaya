@@ -10,6 +10,7 @@
 	<entity class="ma.riaya.model.dictionary.Picture" />
 	<entity class="ma.riaya.model.dictionary.Area" />
 	<entity class="ma.riaya.model.dictionary.Address" />
+	<entity class="ma.riaya.model.dictionary.User" />
 	<entity class="ma.riaya.model.folder.social.SocialWorker" />
 	<entity class="ma.riaya.model.folder.social.Family" />
 	<entity class="ma.riaya.model.folder.social.Orphan" />

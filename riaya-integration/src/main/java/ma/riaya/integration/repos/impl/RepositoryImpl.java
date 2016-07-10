@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ma.riaya.integration.repos;
+package ma.riaya.integration.repos.impl;
 
 import static ma.riaya.integration.util.AssertTool.isTrue;
 import static ma.riaya.integration.util.AssertTool.notNull;
@@ -24,6 +24,7 @@ import javax.persistence.criteria.Root;
 import org.apache.log4j.Logger;
 
 import ma.riaya.integration.exception.IntegrationException;
+import ma.riaya.integration.repos.IRepository;
 import ma.riaya.integration.repos.query.QueryTool;
 import ma.riaya.integration.util.ReflectionTool;
 import ma.riaya.model.dictionary.BaseObject;

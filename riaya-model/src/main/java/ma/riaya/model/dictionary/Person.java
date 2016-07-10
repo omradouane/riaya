@@ -50,7 +50,7 @@ public class Person extends BaseObject {
 	private Picture picture;
 	
 	@Column(length = 1)
-	private Sex sex;
+	private SexEnum sex;
 
 	/**
 	 * Get the id for this object
@@ -206,7 +206,7 @@ public class Person extends BaseObject {
 	 * @author ouledmoussa
 	 * @return the sex
 	 */
-	public Sex getSex() {
+	public SexEnum getSex() {
 		return sex;
 	}
 
@@ -216,7 +216,7 @@ public class Person extends BaseObject {
 	 * @param sex
 	 *            the sex to set
 	 */
-	public void setSex(final Sex sex) {
+	public void setSex(final SexEnum sex) {
 		this.sex = sex;
 	}
 

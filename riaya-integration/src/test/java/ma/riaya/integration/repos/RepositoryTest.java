@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
+import ma.riaya.integration.repos.impl.RepositoryImpl;
 import ma.riaya.model.dictionary.BaseObject;
 
 /**

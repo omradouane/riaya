@@ -20,7 +20,7 @@ import org.junit.Test;
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
 import ma.riaya.integration.repos.IPersonRepository;
-import ma.riaya.integration.repos.PersonRepository;
+import ma.riaya.integration.repos.impl.PersonRepository;
 import ma.riaya.model.dictionary.Person;
 import ma.riaya.model.dictionary.Picture;
 

@@ -24,17 +24,17 @@ import org.junit.Test;
 
 import ma.riaya.integration.AbstractTest;
 import ma.riaya.integration.exception.IntegrationException;
-import ma.riaya.integration.repos.FamilyRepository;
 import ma.riaya.integration.repos.IFamilyRepository;
 import ma.riaya.integration.repos.IOrphanRepository;
 import ma.riaya.integration.repos.ISocialWorkerRepository;
-import ma.riaya.integration.repos.OrphanRepository;
-import ma.riaya.integration.repos.SocialWorkerRepository;
+import ma.riaya.integration.repos.impl.FamilyRepository;
+import ma.riaya.integration.repos.impl.OrphanRepository;
+import ma.riaya.integration.repos.impl.SocialWorkerRepository;
 import ma.riaya.model.dictionary.Address;
 import ma.riaya.model.dictionary.Area;
 import ma.riaya.model.dictionary.Person;
 import ma.riaya.model.dictionary.Picture;
-import ma.riaya.model.dictionary.Sex;
+import ma.riaya.model.dictionary.SexEnum;
 import ma.riaya.model.folder.social.CareType;
 import ma.riaya.model.folder.social.Family;
 import ma.riaya.model.folder.social.Orphan;
@@ -74,7 +74,7 @@ public class FamilyTest extends AbstractTest {
 		responsible.setCinNumber("AAAA");
 		responsible.setLastName("LLLL");
 		responsible.setDateOfBirth(LocalDate.of(1960, Month.APRIL, 15));
-		responsible.setSex(Sex.F);
+		responsible.setSex(SexEnum.F);
 		// picture
 		final String fileName = "riaya.png";
 		final Picture pic = new Picture();
@@ -101,7 +101,7 @@ public class FamilyTest extends AbstractTest {
 		person.setCinNumber("AAAA");
 		person.setLastName("B. K.");
 		person.setDateOfBirth(LocalDate.of(1960, Month.APRIL, 15));
-		person.setSex(Sex.M);
+		person.setSex(SexEnum.M);
 		sw.setPerson(person);
 		f.setSocialWorker(swRepos.save(sw));
 		// address

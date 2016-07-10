@@ -1,8 +1,9 @@
 /**
  * 
  */
-package ma.riaya.integration.repos;
+package ma.riaya.integration.repos.impl;
 
+import ma.riaya.integration.repos.IPictureRepository;
 import ma.riaya.model.dictionary.Picture;
 
 /**
