@@ -64,5 +64,6 @@
 	<modules>
 		<module>riaya-model</module>
 		<module>riaya-integration</module>
+		<module>riaya-service</module>
 	</modules>
 </project>
